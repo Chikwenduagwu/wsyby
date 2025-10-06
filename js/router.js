@@ -176,3 +176,19 @@ supabase.auth.onAuthStateChange((event, session) => {
     navigateTo('login');
   }
 });
+
+
+// runScripts() – ensures dynamically loaded <script> tags actually execute
+function runScripts(element) {
+  const scripts = element.querySelectorAll("script");
+  scripts.forEach(oldScript => {
+    const newScript = document.createElement("script");
+    if (oldScript.src) {
+      newScript.src = oldScript.src;
+    } else {
+      newScript.textContent = oldScript.textContent;
+    }
+    document.body.appendChild(newScript);
+    oldScript.remove();
+  });
+}
