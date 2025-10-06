@@ -29,7 +29,7 @@ const routes = {
     html: 'pages/rugcheck.html',
     css: 'css/rugcheck.css',
     requiresAuth: true,
-    init: initAnalyze
+    init: initrugcheck
   },
   'about': {
     html: 'pages/about.html',
