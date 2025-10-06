@@ -1,0 +1,411 @@
+<div class="header">
+  <div class="title">
+   <div class="logodob"><img src="img/dob.png"  width="70px" height="70px"></div>
+    <div>
+      <h1>Rug Check</h1>
+      <div class="sub">Security analysis & risk assessment</div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <!-- SolSniffer + Dobby AI Section -->
+<div class="solsniffer-section">
+  <style>
+    .solsniffer-section{max-width:820px;margin:32px auto;padding:32px;border-radius:16px;background:#ffffff;box-shadow:0 4px 6px rgba(0,0,0,0.07),0 12px 24px rgba(0,0,0,0.08);border:2px solid #000000}
+    .solsniffer-section h2{margin:0 0 12px;font-size:28px;color:#000000;font-weight:800;letter-spacing:-0.5px}
+    .solsniffer-section p.lead{margin:0 0 24px;color:#333333;font-size:15px;line-height:1.6}
+    .solsniffer-section .controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+    .solsniffer-section input[type="text"]{flex:1;min-width:280px;padding:14px 18px;border-radius:12px;border:2px solid #000000;background:#ffffff;color:#000000;font-size:15px;font-weight:500;transition:all 0.2s}
+    .solsniffer-section input[type="text"]:focus{outline:none;border-color:#000000;box-shadow:0 0 0 3px rgba(0,0,0,0.1)}
+    .solsniffer-section button{background:#000000;border:2px solid #000000;padding:14px 24px;border-radius:12px;color:#ffffff;font-weight:700;cursor:pointer;font-size:15px;transition:all 0.2s;text-transform:uppercase;letter-spacing:0.5px}
+    .solsniffer-section button:hover{background:#333333;transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,0.2)}
+    .solsniffer-section button:active{transform:translateY(0)}
+    .solsniffer-section button:disabled{opacity:0.4;cursor:not-allowed;transform:none}
+    .solsniffer-section button.ghost{background:#ffffff;border:2px solid #000000;color:#000000}
+    .solsniffer-section button.ghost:hover{background:#f5f5f5}
+    .solsniffer-section .result{margin-top:28px;padding:0;border-radius:12px;background:#ffffff;display:none;animation:fadeIn 0.4s ease-in}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    .solsniffer-section .badge{display:inline-block;padding:8px 16px;border-radius:8px;font-weight:700;font-size:14px;border:2px solid #000000;margin-bottom:20px}
+    .solsniffer-section .safe{background:#ffffff;color:#000000;border-color:#22c55e}
+    .solsniffer-section .risk{background:#ffffff;color:#000000;border-color:#ef4444}
+    .solsniffer-section .warning{background:#ffffff;color:#000000;border-color:#fbbf24}
+    .solsniffer-section .note{margin-top:16px;color:#666666;font-size:13px}
+    .solsniffer-section .analysis-section{margin-top:24px;padding:28px;border-radius:12px;background:#ffffff;border:2px solid #000000}
+    .solsniffer-section .analysis-section h3{margin:0 0 20px;font-size:20px;color:#000000;font-weight:800;display:flex;align-items:center;gap:10px}
+    .solsniffer-section .analysis-content{line-height:1.8;color:#000000;font-size:15px}
+    .solsniffer-section .analysis-content strong{font-weight:800;text-transform:uppercase;letter-spacing:0.3px;color:#000000}
+    .solsniffer-section .analysis-content p{margin:0 0 16px}
+    .solsniffer-section .analysis-content p:last-child{margin:0}
+    .solsniffer-section .analysis-content h4{font-size:16px;font-weight:800;margin:20px 0 10px;color:#000000;text-transform:uppercase;letter-spacing:0.5px}
+    .solsniffer-section .analysis-content ul{margin:8px 0;padding-left:24px}
+    .solsniffer-section .analysis-content li{margin:6px 0;color:#000000}
+    .solsniffer-section .loading-dots{display:inline-flex;gap:6px;align-items:center}
+    .solsniffer-section .loading-dots span{width:8px;height:8px;border-radius:50%;background:#000000;animation:bounce-dots 1.4s infinite ease-in-out both}
+    .solsniffer-section .loading-dots span:nth-child(1){animation-delay:-0.32s}
+    .solsniffer-section .loading-dots span:nth-child(2){animation-delay:-0.16s}
+    @keyframes bounce-dots{0%,80%,100%{transform:scale(0)}40%{transform:scale(1)}}
+    .solsniffer-section .typing-cursor{display:inline-block;width:2px;height:18px;background:#000000;margin-left:2px;animation:blink 1s infinite}
+    @keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+    .solsniffer-section .summary-box{background:#f8f8f8;border:2px solid #000000;border-radius:12px;padding:20px;margin-top:24px}
+    .solsniffer-section .summary-box h4{margin:0 0 12px;font-size:16px;font-weight:800;color:#000000;text-transform:uppercase;letter-spacing:0.5px}
+    .solsniffer-section .summary-box p{margin:0;color:#000000;font-size:15px;line-height:1.6}
+  </style>
+
+  <h2>🔍 Token Rug Pull Analyzer</h2>
+  <p class="lead">Enter a Solana token address below. Dobby AI will analyze the token for potential rug pull risks and provide you with a detailed security assessment.</p>
+
+  <div class="controls">
+    <input type="text" id="solsnifferAddr" placeholder="Enter Solana token address..." />
+    <button id="solsnifferCheck">Analyze Token</button>
+    <button id="solsnifferExample" class="ghost">Try Example</button>
+  </div>
+
+  <div id="solsnifferResult" class="result" role="status" aria-live="polite">
+    <div id="solsnifferSummary"></div>
+    
+    <div id="solsnifferAiAnalysis" class="analysis-section" style="display:none">
+      <h3>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+        Dobby's Analysis
+      </h3>
+      <div id="solsnifferAiContent" class="analysis-content"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  
+  /* API CONFIGURATION */
+  const SOLSNIFFER_API_KEY = "to5p72yao22ajhlxiw6bvj8hogt896";
+  const FIREWORKS_API_KEY = "fw_3ZYt5vRJztdY1fXajRko5YCt"; // <- Replace with your Fireworks AI key
+  const SOLSNIFFER_BASE = "https://solsniffer.com";
+  const SOLSNIFFER_PATH = "/api/v2/token";
+  const FIREWORKS_API_URL = "https://api.fireworks.ai/inference/v1/chat/completions";
+  const FIREWORKS_MODEL = "accounts/sentientfoundation-serverless/models/dobby-mini-unhinged-plus-llama-3-1-8b";
+
+  // UI Elements
+  const addrEl = document.getElementById('solsnifferAddr');
+  const checkBtn = document.getElementById('solsnifferCheck');
+  const exampleBtn = document.getElementById('solsnifferExample');
+  const resultEl = document.getElementById('solsnifferResult');
+  const summaryEl = document.getElementById('solsnifferSummary');
+  const aiAnalysisEl = document.getElementById('solsnifferAiAnalysis');
+  const aiContentEl = document.getElementById('solsnifferAiContent');
+
+  function showResult(){ resultEl.style.display = 'block'; }
+  function hideResult(){ resultEl.style.display = 'none'; }
+  function showAIAnalysis(){ aiAnalysisEl.style.display = 'block'; }
+  function hideAIAnalysis(){ aiAnalysisEl.style.display = 'none'; }
+
+  function isProbablyPubkey(s){
+    if(!s || typeof s !== 'string') return false;
+    s = s.trim();
+    return s.length >= 32 && s.length <= 60;
+  }
+
+  function typeWriter(element, text, speed = 15) {
+    return new Promise((resolve) => {
+      let i = 0;
+      element.innerHTML = '';
+      
+      function type() {
+        if (i < text.length) {
+          element.innerHTML += text.charAt(i);
+          i++;
+          setTimeout(type, speed);
+        } else {
+          resolve();
+        }
+      }
+      type();
+    });
+  }
+
+  function formatDobbyResponse(text) {
+    // Remove asterisks and format the text
+    text = text.replace(/\*\*/g, '');
+    
+    // Split into lines
+    const lines = text.split('\n').filter(line => line.trim());
+    let formatted = '';
+    let inList = false;
+    
+    lines.forEach(line => {
+      line = line.trim();
+      
+      // Check if line is a heading (starts with number or contains ":")
+      if (/^\d+\./.test(line) || (line.includes(':') && line.length < 100)) {
+        if (inList) {
+          formatted += '</ul>';
+          inList = false;
+        }
+        const parts = line.split(':');
+        if (parts.length > 1) {
+          formatted += `<h4>${parts[0].trim()}:</h4><p>${parts.slice(1).join(':').trim()}</p>`;
+        } else {
+          formatted += `<h4>${line}</h4>`;
+        }
+      }
+      // Check if line is a bullet point
+      else if (line.startsWith('-') || line.startsWith('•')) {
+        if (!inList) {
+          formatted += '<ul>';
+          inList = true;
+        }
+        formatted += `<li>${line.substring(1).trim()}</li>`;
+      }
+      // Check for important keywords to make bold
+      else {
+        if (inList) {
+          formatted += '</ul>';
+          inList = false;
+        }
+        
+        // Bold important terms
+        let processedLine = line
+          .replace(/(safe|low risk|secure|verified|legitimate)/gi, '<strong>$1</strong>')
+          .replace(/(risky|high risk|dangerous|scam|rug pull|warning|caution|suspicious)/gi, '<strong>$1</strong>')
+          .replace(/(recommendation|conclusion|summary|verdict)/gi, '<strong>$1</strong>');
+        
+        formatted += `<p>${processedLine}</p>`;
+      }
+    });
+    
+    if (inList) {
+      formatted += '</ul>';
+    }
+    
+    return formatted;
+  }
+
+  function extractSummary(text) {
+    // Look for final recommendation or summary
+    const lines = text.split('\n').filter(line => line.trim());
+    const lastLines = lines.slice(-3).join(' ');
+    
+    // Find summary-like content
+    for (let i = lines.length - 1; i >= 0; i--) {
+      const line = lines[i].toLowerCase();
+      if (line.includes('recommendation') || line.includes('conclusion') || 
+          line.includes('summary') || line.includes('verdict') ||
+          line.includes('final')) {
+        return lines.slice(i).join(' ').replace(/\*\*/g, '').replace(/^\d+\.\s*/, '');
+      }
+    }
+    
+    return lastLines.replace(/\*\*/g, '');
+  }
+
+  async function getDobbyAnalysis(jsonData){
+    const prompt = `You are Dobby, an expert Solana token rug pull analyst. Analyze this SolSniffer token data and provide a clear, human-readable assessment.
+
+Token Data:
+${JSON.stringify(jsonData, null, 2)}
+
+Provide your analysis in the following structure:
+1. Overall Risk Assessment: [Safe/Moderate Risk/High Risk]
+2. Key Risk Factors: [List any red flags found]
+3. Positive Indicators: [List any good signs]
+4. Final Recommendation: [Clear action item for investors]
+
+Be direct, professional, and focus on what matters most to investors. Use clear language without excessive technical jargon.`;
+
+    const response = await fetch(FIREWORKS_API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${FIREWORKS_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: FIREWORKS_MODEL,
+        messages: [
+          {
+            role: "system",
+            content: "You are Dobby, a professional Solana token security analyst. Provide clear, structured analysis of token safety data. Be direct and helpful."
+          },
+          {
+            role: "user",
+            content: prompt
+          }
+        ],
+        temperature: 0.7,
+        max_tokens: 1000
+      })
+    });
+
+    if(!response.ok){
+      const errorText = await response.text().catch(() => '');
+      throw new Error(`Fireworks AI error: ${response.status} - ${errorText}`);
+    }
+
+    const data = await response.json();
+    return data.choices[0].message.content;
+  }
+
+  async function checkToken(){
+    const addr = addrEl.value.trim();
+
+    if(!addr){ 
+      alert('Please enter a token address'); 
+      addrEl.focus(); 
+      return; 
+    }
+
+    if(FIREWORKS_API_KEY === 'YOUR_FIREWORKS_API_KEY_HERE'){
+      alert('Please configure your Fireworks AI API key in the script');
+      return;
+    }
+
+    if(!isProbablyPubkey(addr) && !confirm('Address format looks unusual. Continue anyway?')) return;
+
+    checkBtn.disabled = true;
+    checkBtn.textContent = 'Analyzing...';
+    showResult();
+    hideAIAnalysis();
+    summaryEl.innerHTML = '<span class="badge warning"><span class="loading-dots"><span></span><span></span><span></span></span> Fetching token data</span>';
+
+    const url = `${SOLSNIFFER_BASE}${SOLSNIFFER_PATH}/${encodeURIComponent(addr)}`;
+    const headers = {
+      'accept': 'application/json',
+      'X-API-KEY': SOLSNIFFER_API_KEY
+    };
+
+    try {
+      // Step 1: Get SolSniffer data
+      const res = await fetch(url, { method: 'GET', headers });
+      
+      if(!res.ok){
+        const text = await res.text().catch(()=> '');
+        summaryEl.innerHTML = `<span class="badge risk">Error: HTTP ${res.status}</span>`;
+        checkBtn.disabled = false;
+        checkBtn.textContent = 'Analyze Token';
+        return;
+      }
+
+      const data = await res.json().catch(async () => {
+        const t = await res.text();
+        return { _raw: t };
+      });
+
+      // Display basic score
+      const score = data.snifscore ?? data.snifScore ?? data.score ?? data.risk_score ?? data.riskScore;
+
+      if(score !== undefined && score !== null){
+        const n = Number(score);
+        if(!Number.isNaN(n)){
+          if(n >= 70){
+            summaryEl.innerHTML = `<span class="badge safe">✓ Initial Score: ${n}/100 — Analyzing deeper...</span>`;
+          } else if(n >= 40){
+            summaryEl.innerHTML = `<span class="badge warning">⚠ Initial Score: ${n}/100 — Analyzing deeper...</span>`;
+          } else {
+            summaryEl.innerHTML = `<span class="badge risk">⚠ Initial Score: ${n}/100 — Analyzing deeper...</span>`;
+          }
+        }
+      } else {
+        summaryEl.innerHTML = `<span class="badge warning">Data received — analyzing with AI...</span>`;
+      }
+
+      // Step 2: Get Dobby's analysis
+      summaryEl.innerHTML += ' <span class="loading-dots" style="margin-left:8px"><span></span><span></span><span></span></span>';
+      aiContentEl.innerHTML = '<div class="loading-dots"><span></span><span></span><span></span></div> Dobby is analyzing the token data...';
+      showAIAnalysis();
+
+      const analysis = await getDobbyAnalysis(data);
+      
+      // Format and display with typing effect
+      const formattedAnalysis = formatDobbyResponse(analysis);
+      aiContentEl.innerHTML = '';
+      
+      // Create a temporary div to hold formatted content
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = formattedAnalysis;
+      
+      // Type out the content
+      await typeWriter(aiContentEl, tempDiv.innerText, 8);
+      
+      // Then replace with properly formatted HTML
+      aiContentEl.innerHTML = formattedAnalysis;
+      
+      // Add summary box at the end
+      const summary = extractSummary(analysis);
+      if (summary) {
+        aiContentEl.innerHTML += `
+          <div class="summary-box">
+            <h4>📌 Quick Summary</h4>
+            <p>${summary}</p>
+          </div>
+        `;
+      }
+
+      // Update summary badge based on analysis
+      if (analysis.toLowerCase().includes('high risk') || analysis.toLowerCase().includes('risky') || analysis.toLowerCase().includes('dangerous')) {
+        summaryEl.innerHTML = `<span class="badge risk">⚠ High Risk Detected</span>`;
+      } else if (analysis.toLowerCase().includes('safe') || analysis.toLowerCase().includes('low risk')) {
+        summaryEl.innerHTML = `<span class="badge safe">✓ Analysis Complete</span>`;
+      } else {
+        summaryEl.innerHTML = `<span class="badge warning">⚠ Analysis Complete</span>`;
+      }
+
+    } catch (err) {
+      if(err.message && err.message.includes('Fireworks')){
+        summaryEl.innerHTML = `<span class="badge risk">AI Analysis Failed</span>`;
+        aiContentEl.innerHTML = `<p><strong>Error:</strong> ${err.message}</p><p>Please check your Fireworks AI API key configuration.</p>`;
+        showAIAnalysis();
+      } else {
+        summaryEl.innerHTML = `<span class="badge risk">Connection Error</span>`;
+        aiContentEl.innerHTML = `<p><strong>Error:</strong> Unable to fetch token data. Please check the token address and try again.</p>`;
+        showAIAnalysis();
+      }
+      console.error(err);
+    } finally {
+      checkBtn.disabled = false;
+      checkBtn.textContent = 'Analyze Token';
+    }
+  }
+
+  // Events
+  checkBtn.addEventListener('click', checkToken);
+  addrEl.addEventListener('keyup', (e) => { if(e.key === 'Enter') checkToken(); });
+  exampleBtn.addEventListener('click', () => { 
+    addrEl.value = 'DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263'; 
+    checkToken(); 
+  });
+
+  // Initial state
+  hideResult();
+})();
+</script>
+</div>
+
+<div class="card">
+  <h2>📝 Manual Security Checklist</h2>
+  <p class="muted">Until automated rug checking is available, use this checklist when evaluating tokens:</p>
+  
+  <div style="margin-top: 16px;">
+    <div class="kv">
+      <div class="k">1. Check Contract Source</div>
+      <div class="v"><span class="badge warning">Manual</span></div>
+    </div>
+    <div class="kv">
+      <div class="k">2. Verify Liquidity Lock</div>
+      <div class="v"><span class="badge warning">Manual</span></div>
+    </div>
+    <div class="kv">
+      <div class="k">3. Review Team & Social</div>
+      <div class="v"><span class="badge warning">Manual</span></div>
+    </div>
+    <div class="kv">
+      <div class="k">4. Check Holder Distribution</div>
+      <div class="v"><span class="badge warning">Manual</span></div>
+    </div>
+    <div class="kv">
+      <div class="k">5. Analyze Trading Volume</div>
+      <div class="v"><span class="badge success">Available</span></div>
+    </div>
+  </div>
+</div>

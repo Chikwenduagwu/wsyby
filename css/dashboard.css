@@ -1,0 +1,163 @@
+/* ====== DASHBOARD PAGE STYLES ====== */
+
+/* Stat cards animation */
+.stat-card {
+  animation: popIn 0.5s ease-out backwards;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:nth-child(1) { animation-delay: 0.1s; }
+.stat-card:nth-child(2) { animation-delay: 0.2s; }
+.stat-card:nth-child(3) { animation-delay: 0.3s; }
+.stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(255,122,24,0.15);
+}
+
+/* Stat value pulse */
+.stat-value {
+  animation: valueGlow 3s ease-in-out infinite;
+}
+
+@keyframes valueGlow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(255,122,24,0.3);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255,122,24,0.6), 0 0 30px rgba(255,122,24,0.4);
+  }
+}
+
+/* Trending table enhancements */
+.table-container {
+  animation: slideIn 0.6s ease-out 0.5s backwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+table tbody tr {
+  animation: fadeInRow 0.4s ease-out backwards;
+}
+
+table tbody tr:nth-child(1) { animation-delay: 0.6s; }
+table tbody tr:nth-child(2) { animation-delay: 0.65s; }
+table tbody tr:nth-child(3) { animation-delay: 0.7s; }
+table tbody tr:nth-child(4) { animation-delay: 0.75s; }
+table tbody tr:nth-child(5) { animation-delay: 0.8s; }
+table tbody tr:nth-child(6) { animation-delay: 0.85s; }
+table tbody tr:nth-child(7) { animation-delay: 0.9s; }
+table tbody tr:nth-child(8) { animation-delay: 0.95s; }
+table tbody tr:nth-child(9) { animation-delay: 1s; }
+table tbody tr:nth-child(10) { animation-delay: 1.05s; }
+
+@keyframes fadeInRow {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Recent analyses hover effect */
+#recentAnalyses .kv {
+  transition: background 0.2s ease, transform 0.2s ease;
+  padding: 12px;
+  border-radius: 8px;
+  margin: 4px 0;
+}
+
+#recentAnalyses .kv:hover {
+  background: rgba(255,122,24,0.05);
+  transform: translateX(4px);
+}
+
+/* Logout button styling */
+#logoutBtn {
+  transition: all 0.2s ease;
+  background-color: black;
+  color: white;
+}
+
+#logoutBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255,122,24,0.2);
+}
+
+/* Loading state */
+#trendingLoading {
+  padding: 20px 0;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .stat-value {
+    font-size: 24px;
+  }
+  
+  .stat-label {
+    font-size: 12px;
+  }
+}
+
+.stat-cardone {
+    background-color: dodgerblue;
+    color: white;
+    border-radius: 10px;
+}
+
+.stat-cardtwo {
+    background-color: grey;
+    color: white;
+    border-radius: 10px;
+}
+
+.stat-cardthree {
+    background-color: orange;
+    color: white;
+    border-radius: 10px;
+}
+
+.stat-cardfour {
+    background-color: green;
+    color: white;
+    border-radius: 10px;
+}
+
+.statementone {
+    background-color: lightslategrey;
+    margin: auto 0;
+    color: ghostwhite;
+    border-radius: 10px;
+    border-spacing: 10px;
+    margin-left: auto 5;
+}
+
+.statementone p{
+    color: ghostwhite;
+    font-size: 14px;
+}

@@ -1,0 +1,57 @@
+<div class="auth-container">
+  <div class="header">
+    <div class="title">
+      <div class="logodob"><img src="img/dob.png"  width="70px" height="70px"></div>
+      <div>
+        <h1>Dobby AgentFI</h1>
+        <div class="sub">Professional crypto analysis platform</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card auth-card">
+    <h2 class="text-center">Welcome Back</h2>
+    <p class="text-center muted mb-2">Sign in to continue your crypto analysis journey</p>
+    
+    <form id="loginForm" onsubmit="return false;">
+      <div class="form-group">
+        <label for="loginEmail">Email Address</label>
+        <input 
+          type="email" 
+          id="loginEmail" 
+          name="email"
+          required 
+          placeholder="your@email.com" 
+          autocomplete="email"
+        >
+      </div>
+      
+      <div class="form-group">
+        <label for="loginPassword">Password</label>
+        <input 
+          type="password" 
+          id="loginPassword" 
+          name="password"
+          required 
+          placeholder="••••••••" 
+          autocomplete="current-password"
+          minlength="6"
+        >
+      </div>
+      
+      <button type="submit" class="btn">Sign In</button>
+    </form>
+    
+    <p class="text-center muted" style="margin-top: 20px;">
+      Don't have an account? 
+      <button type="button" class="link-btn" onclick="switchToRegister()">Create Account</button>
+    </p>
+  </div>
+</div>
+
+<script>
+  // Setup authentication listeners when page loads
+  if (typeof setupAuthListeners === 'function') {
+    setupAuthListeners();
+  }
+</script>

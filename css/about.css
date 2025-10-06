@@ -1,0 +1,121 @@
+/* ====== ABOUT PAGE STYLES ====== */
+
+/* Feature cards grid animation */
+.card > div > div {
+  animation: featureSlideIn 0.6s ease-out backwards;
+  transition: all 0.3s ease;
+}
+
+.card > div > div:nth-child(1) { animation-delay: 0.1s; }
+.card > div > div:nth-child(2) { animation-delay: 0.2s; }
+.card > div > div:nth-child(3) { animation-delay: 0.3s; }
+.card > div > div:nth-child(4) { animation-delay: 0.4s; }
+.card > div > div:nth-child(5) { animation-delay: 0.5s; }
+.card > div > div:nth-child(6) { animation-delay: 0.6s; }
+.card > div > div:nth-child(7) { animation-delay: 0.7s; }
+
+@keyframes featureSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Feature card hover effect */
+.card > div > div {
+  cursor: default;
+}
+
+.card > div > div:hover {
+  background: rgba(255,122,24,0.08) !important;
+  transform: translateX(8px);
+  box-shadow: 0 4px 16px rgba(255,122,24,0.1);
+}
+
+/* Emoji animation on hover */
+.card > div > div:hover span {
+  animation: emojiWiggle 0.5s ease-in-out;
+}
+
+@keyframes emojiWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+}
+
+/* Links styling */
+.card a {
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.card a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.card a:hover::after {
+  width: 100%;
+}
+
+.card a:hover {
+  color: var(--accent-2);
+  text-shadow: 0 0 10px rgba(255,122,24,0.3);
+}
+
+/* Credits card special styling */
+.card:last-of-type {
+  background: linear-gradient(135deg, var(--card), rgba(255,122,24,0.05));
+  border: 1px solid rgba(255,122,24,0.15);
+  animation: creditsGlow 5s ease-in-out infinite;
+}
+
+@keyframes creditsGlow {
+  0%, 100% {
+    box-shadow: 0 12px 38px rgba(0,0,0,0.35);
+  }
+  50% {
+    box-shadow: 0 12px 38px rgba(255,122,24,0.15), 0 0 30px rgba(255,122,24,0.1);
+  }
+}
+
+/* How it works steps */
+.kv strong {
+  color: var(--accent);
+  transition: color 0.2s ease;
+}
+
+.kv:hover strong {
+  color: var(--accent-2);
+}
+
+/* Feature item styling */
+.card strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--text);
+  font-size: 15px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .card > div > div {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .card > div > div span {
+    font-size: 28px;
+  }
+}
