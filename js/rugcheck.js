@@ -1,3 +1,8 @@
+function initRugCheck() {
+  console.log('Rug Check initialized');
+  // Place any specific setup here if needed
+}
+
 (function(){
   'use strict';
   
@@ -299,4 +304,5 @@ Be direct, professional, and focus on what matters most to investors. Use clear 
 
   // Initial state
   hideResult();
+
 })();
