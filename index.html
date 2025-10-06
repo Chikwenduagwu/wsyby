@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>DOBBY AGENTFI</title>
+  <title>WsydotAI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/components.css">
 </head>
 <body>
-  <!-- Background Effects (Shared across all pages) -->
+  
   <div class="bg-effects">
     <div class="grid-overlay"></div>
     <div class="light-beam"></div>
@@ -18,10 +18,10 @@
     <div class="light-beam"></div>
   </div>
 
-  <!-- Page Container - Content loads here -->
+ 
   <div id="page-container"></div>
 
-  <!-- Bottom Navigation (Hidden until logged in) -->
+  
   <div class="bottom-nav" id="bottomNav" style="display: none;">
     <div class="nav-item" data-page="dashboard">
       <div class="nav-icon"><img src="img/icon/personalization.png" width="20px" height="20px"></div>
@@ -33,7 +33,7 @@
     </div>
     <div class="nav-item" data-page="rugcheck">
       <div class="nav-icon"><img src="img/icon/phishing.png" width="20px" height="20px"></div>
-      <div class="nav-label">Rug Check</div>
+      <div class="nav-label">Rug Spill</div>
     </div>
     <div class="nav-item" data-page="about">
       <div class="nav-icon"><img src="img/icon/info.png" width="20px" height="20px"></div>
@@ -41,17 +41,18 @@
     </div>
   </div>
 
-  <!-- Toast Notification -->
+  
   <div id="toast" class="toast"></div>
 
-  <!-- Load Scripts -->
+  
  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/config.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/auth.js"></script>
 <script src="js/dashboard.js"></script>
 <script src="js/analyze.js"></script>
-<script src="js/router.js"></script> <!-- must be last -->
+<script src="js/rugcheck.js"></script>
+<script src="js/router.js"></script> 
 
 </body>
 </html>
