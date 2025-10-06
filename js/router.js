@@ -28,7 +28,8 @@ const routes = {
   'rugcheck': {
     html: 'pages/rugcheck.html',
     css: 'css/rugcheck.css',
-    requiresAuth: true
+    requiresAuth: true,
+    init: initRugcheck
   },
   'about': {
     html: 'pages/about.html',
