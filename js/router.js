@@ -72,6 +72,8 @@ async function navigateTo(page) {
   const html = await loadHTML(route.html);
   const container = $('page-container');
   container.innerHTML = html;
+
+  runScripts(container)
   
   // Update navigation
   updateNavigation(page, route.requiresAuth);
