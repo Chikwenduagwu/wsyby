@@ -1,4 +1,4 @@
-function initrugCheck() {
+function initrugcheck() {
   console.log('Rug Check initialized');
   // Place any specific setup here if needed
 }
@@ -306,4 +306,5 @@ Be direct, professional, and focus on what matters most to investors. Use clear 
   hideResult();
 
 })();
+
 
