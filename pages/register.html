@@ -1,0 +1,70 @@
+<div class="auth-container">
+  <div class="header">
+    <div class="title">
+      <div class="logodob"><img src="img/dob.png"  width="70px" height="70px"></div>
+      <div>
+        <h1>WsydotAI</h1>
+        <div class="sub">Create your account and start your journey with us</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card auth-card">
+    <h2 class="text-center">Create Account</h2>
+    <p class="text-center muted mb-2">Join thousands of crypto analysts</p>
+    
+    <form id="registerForm">
+      <div class="form-group">
+        <label for="registerName">Full Name</label>
+        <input 
+          type="text" 
+          id="registerName" 
+          name="name"
+          required 
+          placeholder="John Doe" 
+          autocomplete="name"
+        >
+      </div>
+      
+      <div class="form-group">
+        <label for="registerEmail">Email Address</label>
+        <input 
+          type="email" 
+          id="registerEmail" 
+          name="email"
+          required 
+          placeholder="your@email.com" 
+          autocomplete="email"
+        >
+      </div>
+      
+      <div class="form-group">
+        <label for="registerPassword">Password</label>
+        <input 
+          type="password" 
+          id="registerPassword" 
+          name="password"
+          required 
+          placeholder="••••••••" 
+          minlength="6" 
+          autocomplete="new-password"
+        >
+        <small class="muted">Must be at least 6 characters</small>
+      </div>
+      
+      <button type="submit" class="btn">Create Account</button>
+    </form>
+    
+    <p class="text-center muted" style="margin-top: 20px;">
+      Already have an account? 
+      <button type="button" class="link-btn" onclick="switchToLogin()">Sign In</button>
+    </p>
+  </div>
+</div>
+
+<script>
+  // Setup authentication listeners when page loads
+  if (typeof setupAuthListeners === 'function') {
+    setupAuthListeners();
+  }
+</script>

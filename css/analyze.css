@@ -1,0 +1,146 @@
+
+.card:first-of-type {
+  animation: cardGlow 3s ease-in-out infinite;
+}
+
+@keyframes cardGlow {
+  0%, 100% {
+    box-shadow: 0 12px 38px rgba(0,0,0,0.35), 0 1px 0 rgba(255,255,255,0.04) inset;
+  }
+  50% {
+    box-shadow: 0 12px 38px rgba(255,122,24,0.15), 0 1px 0 rgba(255,255,255,0.04) inset, 0 0 40px rgba(255,122,24,0.1);
+  }
+}
+
+
+#analyzeBtn {
+  position: relative;
+  overflow: hidden;
+}
+
+#analyzeBtn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+#analyzeBtn:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+
+.grid .card {
+  animation: slideInCard 0.6s ease-out backwards;
+}
+
+.grid .card:nth-child(1) { animation-delay: 0.2s; }
+.grid .card:nth-child(2) { animation-delay: 0.3s; }
+
+@keyframes slideInCard {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+#aiInsights {
+  background: #fff;
+  min-height: 150px;
+  line-height: 1.8;
+  font-size: 14px;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+
+.typing-cursor::after {
+  content: '▊';
+  color: var(--accent);
+  animation: blink 1s infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+
+.pill {
+  animation: pillPulse 2s ease-in-out infinite;
+}
+
+@keyframes pillPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 5px rgba(255,122,24,0.1);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(255,122,24,0.2);
+  }
+}
+
+
+.kv {
+  transition: all 0.2s ease;
+}
+
+.kv:hover {
+  background: rgba(255,122,24,0.03);
+  padding-left: 8px;
+  border-radius: 4px;
+}
+
+
+#analyzeBtn,
+#resetBtn,
+#copyAddressBtn {
+  transition: all 0.2s ease;
+}
+
+#resetBtn:hover,
+#copyAddressBtn:hover {
+  transform: translateY(-2px);
+}
+
+
+#contractAddress:focus {
+  box-shadow: 0 0 0 4px var(--ring), 0 0 20px rgba(255,122,24,0.15);
+}
+
+
+#chainSelect:focus {
+  box-shadow: 0 0 0 4px var(--ring);
+}
+
+
+.loading {
+  justify-content: center;
+}
+
+
+@media (max-width: 768px) {
+  #analyzeBtn,
+  #resetBtn {
+    min-width: 100px !important;
+  }
+  
+  #aiInsights {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+}
